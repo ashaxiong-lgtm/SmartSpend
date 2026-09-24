@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Transactions - SmartSpend</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="dashboard-logo">
+            Smart<span>Spend</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+    <a href="dashboard.html">
+        <span>🏠</span>
+        Dashboard
+    </a>
+
+    <a href="transactions.html" class="active">
+        <span>💰</span>
+        Transactions
+    </a>
+
+    <a href="budget.html">
+        <span>📊</span>
+        Budget & Savings
+    </a>
+
+    <a href="bills.html">
+        <span>🔔</span>
+        Bills & Payments
+    </a>
+
+    <a href="analytics.html">
+        <span>📈</span>
+        Analytics
+    </a>
+
+    <a href="reports.html">
+        <span>📄</span>
+        Reports
+    </a>
+
+</nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="settings.html">
+                <span>⚙</span>
+                Settings
+            </a>
+
+            <a href="#" id="logoutBtn">
+                <span>⇥</span>
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="dashboard-main">
+
+
+        <!-- =========================
+             PAGE HEADER
+        ========================== -->
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <div class="page-title-row">
+
+                    <div>
+                        <h1>Transactions</h1>
+
+                        <p>
+                            Track and manage your income and expenses.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- USER PROFILE -->
+
+            <div class="user-profile">
+
+                <div class="user-avatar" id="userAvatar">
+                    U
+                </div>
+
+                <div>
+
+                    <strong id="userName">
+                        Loading...
+                    </strong>
+
+                    <small id="userEmail">
+                        Loading...
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             TRANSACTION SUMMARY
+        ========================== -->
+
+        <section class="transaction-summary-grid">
+
+
+            <!-- Total Transactions -->
+
+           <div class="transaction-stat-card">
+
+    <div class="transaction-stat-icon">
+        ↔
+    </div>
+
+    <div>
+
+        <span class="transaction-stat-label">
+            Total Transactions
+        </span>
+
+        <strong id="transactionTotalCount">
+            0
+        </strong>
+
+    </div>
+
+</div>
+
+
+            <!-- Income -->
+
+            <div class="transaction-stat-card income-stat">
+
+                <div class="transaction-stat-icon">
+                    ↑
+                </div>
+
+                <div>
+
+                    <span class="transaction-stat-label">
+                        Income
+                    </span>
+
+                    <strong id="transactionTotalIncome">
+    ৳ —
+</strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Expenses -->
+
+            <div class="transaction-stat-card expense-stat">
+
+                <div class="transaction-stat-icon">
+                    ↓
+                </div>
+
+                <div>
+
+                    <span class="transaction-stat-label">
+                        Expenses
+                    </span>
+
+                    <strong id="transactionTotalExpense">
+    ৳ —
+</strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Balance -->
+
+            <div class="transaction-stat-card balance-stat">
+
+                <div class="transaction-stat-icon">
+                    =
+                </div>
+
+                <div>
+
+                    <span class="transaction-stat-label">
+                        Net Balance
+                    </span>
+
+                   <strong id="transactionNetBalance">
+    ৳ —
+</strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ADD TRANSACTION
+        ========================== -->
+
+        <section class="transaction-form-card">
+
+            <div class="transaction-section-header">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        MONEY MANAGEMENT
+                    </span>
+
+                    <h2>
+                        Add Transaction
+                    </h2>
+
+                    <p>
+                        Record your income or expense to keep your finances up to date.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form id="transactionForm">
+
+
+                <!-- TYPE -->
+
+                <div class="transaction-type-wrapper">
+
+                    <label>
+                        Transaction Type
+                    </label>
+
+                    <div class="transaction-type-options">
+
+                        <label class="transaction-type-option income-option">
+
+                            <input
+                                type="radio"
+                                name="transactionType"
+                                value="income"
+                                onclick="document.getElementById('type').value='income'"
+                            >
+
+                            <span class="type-option-content">
+
+                                <span class="type-option-icon">
+                                    ↑
+                                </span>
+
+                                <span>
+
+                                    <strong>
+                                        Income
+                                    </strong>
+
+                                    <small>
+                                        Money coming in
+                                    </small>
+
+                                </span>
+
+                            </span>
+
+                        </label>
+
+
+                        <label class="transaction-type-option expense-option">
+
+                            <input
+                                type="radio"
+                                name="transactionType"
+                                value="expense"
+                                onclick="document.getElementById('type').value='expense'"
+                            >
+
+                            <span class="type-option-content">
+
+                                <span class="type-option-icon">
+                                    ↓
+                                </span>
+
+                                <span>
+
+                                    <strong>
+                                        Expense
+                                    </strong>
+
+                                    <small>
+                                        Money going out
+                                    </small>
+
+                                </span>
+
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                    <!-- Keep existing JS field -->
+
+                    <select
+                        id="type"
+                        required
+                        class="transaction-hidden-type"
+                    >
+
+                        <option value="">
+                            Select Type
+                        </option>
+
+                        <option value="income">
+                            Income
+                        </option>
+
+                        <option value="expense">
+                            Expense
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- FORM GRID -->
+
+                <div class="transaction-form-grid">
+
+
+                    <!-- TITLE -->
+
+                    <div class="form-group">
+
+                        <label for="title">
+                            Transaction Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="title"
+                            placeholder="e.g. Monthly Salary"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- CATEGORY -->
+
+                    <div class="form-group">
+
+                        <label for="category">
+                            Category
+                        </label>
+
+                        <select
+                            id="category"
+                            required
+                        >
+
+                            <option value="">
+                                Select Category
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- AMOUNT -->
+
+                    <div class="form-group">
+
+                        <label for="amount">
+                            Amount
+                        </label>
+
+                        <div class="amount-input-wrapper">
+
+                            <span>
+                                ৳
+                            </span>
+
+                            <input
+                                type="number"
+                                id="amount"
+                                placeholder="0.00"
+                                min="1"
+                                step="0.01"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PAYMENT -->
+
+                    <div class="form-group">
+
+                        <label for="paymentMethod">
+                            Payment Method
+                        </label>
+
+                        <select
+                            id="paymentMethod"
+                            required
+                        >
+
+                            <option value="">
+                                Select Payment Method
+                            </option>
+
+                            <option value="cash">
+                                Cash
+                            </option>
+
+                            <option value="bkash">
+                                bKash
+                            </option>
+
+                            <option value="nagad">
+                                Nagad
+                            </option>
+
+                            <option value="card">
+                                Card
+                            </option>
+
+                            <option value="bank">
+                                Bank
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- DATE -->
+
+                    <div class="form-group">
+
+                        <label for="transactionDate">
+                            Transaction Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="transactionDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="form-group transaction-description">
+
+                        <label for="description">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="description"
+                            placeholder="Add a note about this transaction (optional)"
+                            rows="3"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTION -->
+
+                <div class="transaction-form-actions">
+
+                    <button
+                        type="submit"
+                        class="transaction-submit-btn"
+                    >
+                        <span>+</span>
+                        Add Transaction
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- =========================
+             TRANSACTION HISTORY
+        ========================== -->
+
+        <section class="transaction-history-card">
+
+
+            <!-- HEADER -->
+
+            <div class="transaction-history-header">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        ACTIVITY
+                    </span>
+
+                    <h2>
+                        Transaction History
+                    </h2>
+
+                    <p>
+                        Review, search and manage your financial activity.
+                    </p>
+
+                </div>
+
+<div class="transaction-count-badge">
+    <span id="transactionHistoryCount">
+        0 transactions
+    </span>
+</div>
+
+            </div>
+
+
+            <!-- =========================
+                 FILTERS
+            ========================== -->
+
+            <div class="transaction-filter-panel">
+
+
+                <!-- SEARCH -->
+
+                <div class="transaction-filter search-filter">
+
+                    <label for="transactionSearch">
+                        Search
+                    </label>
+
+                    <div class="filter-input-wrapper">
+
+                        <span>
+                            ⌕
+                        </span>
+
+                        <input
+                            type="text"
+                            id="transactionSearch"
+                            placeholder="Search transactions..."
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- TYPE -->
+
+                <div class="transaction-filter">
+
+                    <label for="transactionTypeFilter">
+                        Type
+                    </label>
+
+                    <select id="transactionTypeFilter">
+
+                        <option value="all">
+                            All Types
+                        </option>
+
+                        <option value="income">
+                            Income
+                        </option>
+
+                        <option value="expense">
+                            Expense
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- CATEGORY -->
+
+                <div class="transaction-filter">
+
+                    <label for="transactionCategoryFilter">
+                        Category
+                    </label>
+
+                    <select id="transactionCategoryFilter">
+
+                        <option value="all">
+                            All Categories
+                        </option>
+
+                    </select>
+
+                </div>
+
+    
+   <!-- MONTH-->
+<div class="transaction-filter">
+    <label for="transactionMonthFilter">
+        Month
+    </label>
+
+    <input
+        type="month"
+        id="transactionMonthFilter"
+    >
+</div>
+
+                <!-- DATE -->
+
+                <div class="transaction-filter">
+
+                    <label for="transactionDateFilter">
+                        Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="transactionDateFilter"
+                    >
+
+                </div>
+
+
+                <!-- CLEAR -->
+
+                <button
+                    type="button"
+                    id="clearTransactionFilters"
+                    class="clear-filter-btn"
+                >
+                    Clear
+                </button>
+
+            </div>
+
+
+            <!-- =========================
+                 TABLE
+            ========================== -->
+
+            <div class="transaction-table-wrapper">
+
+                <table class="modern-transaction-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Transaction
+                            </th>
+
+                            <th>
+                                Category
+                            </th>
+
+                            <th>
+                                Type
+                            </th>
+
+                            <th>
+                                Payment
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="transactionHistory">
+
+                        <tr>
+
+                            <td
+                                colspan="7"
+                                class="transaction-loading"
+                            >
+                                Loading transactions...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>

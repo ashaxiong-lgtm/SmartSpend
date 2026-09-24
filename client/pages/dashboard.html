@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - SmartSpend</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <!-- Dashboard Layout -->
+    <div class="dashboard-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="dashboard-logo">
+                Smart<span>Spend</span>
+            </div>
+
+           <nav class="sidebar-nav">
+
+    <a href="dashboard.html" class="active">
+        🏠 Dashboard
+    </a>
+
+    <a href="/pages/transactions.html">
+        💰 Transactions
+    </a>
+
+    <a href="/pages/budget.html">
+        📊 Budget & Savings
+    </a>
+
+    <a href="/pages/bills.html">
+        🔔 Bills & Payments
+    </a>
+
+    <a href="/pages/analytics.html">
+        📈 Analytics
+    </a>
+
+    <a href="/pages/reports.html">
+        📄 Reports
+    </a>
+
+</nav>
+
+            <div class="sidebar-bottom">
+
+                <a href="settings.html">
+    ⚙️ Settings
+</a>
+
+                <a href="#" id="logoutBtn">
+    🚪 Logout
+</a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+
+            <!-- Top Bar -->
+            <header class="dashboard-header">
+
+                <div>
+                    <h1>Dashboard</h1>
+
+                    <p>
+                        Here's your financial overview.
+                    </p>
+                </div>
+
+               <div class="user-profile">
+    <div class="user-avatar" id="userAvatar">
+        U
+    </div>
+
+    <div>
+        <strong id="userName">Loading...</strong>
+        <small id="userEmail">Loading...</small>
+    </div>
+</div>
+
+            </header>
+
+
+            <!-- Summary Cards -->
+            <section class="summary-cards">
+
+                <div class="summary-card">
+
+                    <div class="card-icon balance-icon">
+                        💳
+                    </div>
+
+                    <div>
+                        <p>Total Balance</p>
+<h2 id="totalBalance">৳ 0</h2>                    </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="card-icon income-icon">
+                        ↑
+                    </div>
+
+                    <div>
+                        <p>Total Income</p>
+<h2 id="totalIncome">৳ 0</h2>   
+                 </div>
+
+                </div>
+
+
+                <div class="summary-card">
+
+                    <div class="card-icon expense-icon">
+                        ↓
+                    </div>
+
+                    <div>
+                        <p>Total Expenses</p>
+<h2 id="totalExpense">৳ 0</h2>
+                    </div>
+
+                </div>
+
+
+<div class="summary-card">
+
+    <div class="card-icon savings-icon">
+        🎯
+    </div>
+
+    <div>
+        <p>Savings</p>
+        <h2 id="totalSavings">৳ 0</h2>
+    </div>
+
+</div>
+
+            </section>
+
+
+            <!-- Dashboard Grid -->
+            <section class="dashboard-grid">
+
+
+                <!-- Monthly Budget -->
+                <div class="dashboard-box">
+
+                    <div class="box-header">
+
+                        <div>
+                            <h3>Monthly Budget</h3>
+                           <p id="budgetMonth">September 2026</p>
+                        </div>
+
+                       <span class="percentage" id="budgetPercentage">
+    0%
+</span>
+
+                    </div>
+
+                    <div class="large-progress">
+
+                     <div class="large-progress-fill" id="budgetProgress"></div>
+
+                    </div>
+
+                    <div class="budget-info">
+
+                        <span>
+                         Spent: <strong id="budgetSpent">৳ 0</strong>
+                        </span>
+
+                        <span>
+                           Budget: <strong id="budgetAmountDisplay">৳ 0</strong>
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Savings Goal -->
+                <div class="dashboard-box">
+
+                    <div class="box-header">
+
+                        <div>
+                            <h3>Savings Goal</h3>
+                            <p id="savingsGoalName">Loading...</p>
+                        </div>
+
+                       <span class="percentage" id="savingsPercentage">
+    0%
+</span>
+
+                    </div>
+
+                    <div class="large-progress">
+
+                       <div class="savings-progress" id="savingsProgress"></div>
+
+                    </div>
+
+                    <div class="budget-info">
+
+                        <span>
+                          Saved: <strong id="savedAmountDisplay">৳ 0</strong>
+                        </span>
+
+                        <span>
+                           Target: <strong id="targetAmountDisplay">৳ 0</strong>
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Bottom Grid -->
+            <section class="dashboard-grid">
+
+
+                <!-- Recent Transactions -->
+                <div class="dashboard-box transactions-box">
+
+                    <div class="box-header">
+
+                        <div>
+                            <h3>Recent Transactions</h3>
+                            <p>Your latest financial activities</p>
+                        </div>
+
+                        <a href="#">
+                            View All
+                        </a>
+
+                    </div>
+
+
+                    <div class="transaction-item">
+
+                        <div class="transaction-info">
+
+                            <div class="transaction-icon">
+                                🍔
+                            </div>
+
+                            <div>
+                                <strong>Lunch</strong>
+                                <small>Food • Today</small>
+                            </div>
+
+                        </div>
+
+                        <strong class="expense">
+                            - ৳ 250
+                        </strong>
+
+                    </div>
+
+
+                    <div class="transaction-item">
+
+                        <div class="transaction-info">
+
+                            <div class="transaction-icon">
+                                🚌
+                            </div>
+
+                            <div>
+                                <strong>Bus Fare</strong>
+                                <small>Transport • Today</small>
+                            </div>
+
+                        </div>
+
+                        <strong class="expense">
+                            - ৳ 80
+                        </strong>
+
+                    </div>
+
+
+                    <div class="transaction-item">
+
+                        <div class="transaction-info">
+
+                            <div class="transaction-icon">
+                                💼
+                            </div>
+
+                            <div>
+                                <strong>Freelance Payment</strong>
+                                <small>Freelancing • Yesterday</small>
+                            </div>
+
+                        </div>
+
+                        <strong class="income">
+                            + ৳ 5,000
+                        </strong>
+
+                    </div>
+
+
+                    <div class="transaction-item">
+
+                        <div class="transaction-info">
+
+                            <div class="transaction-icon">
+                                🛒
+                            </div>
+
+                            <div>
+                                <strong>Grocery Shopping</strong>
+                                <small>Shopping • Yesterday</small>
+                            </div>
+
+                        </div>
+
+                        <strong class="expense">
+                            - ৳ 1,200
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+<!-- Upcoming Bills -->
+<div class="dashboard-box">
+
+    <div class="box-header">
+
+        <div>
+            <h3>Upcoming Bills</h3>
+            <p>Don't miss your payments</p>
+        </div>
+
+        <a href="bills.html">
+            View All
+        </a>
+
+    </div>
+
+    <div id="dashboardBillsList">
+
+        <p>
+            Loading bills...
+        </p>
+
+    </div>
+
+</div>
+
+            </section>
+
+
+            <!-- Financial Insight -->
+            <section class="insight-box">
+
+                <div class="insight-icon">
+                    💡
+                </div>
+
+                <div>
+
+                    <h3>Smart Insight</h3>
+
+                  <p id="dashboardInsight">
+    Analyzing your financial activity...
+</p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+<script src="/js/app.js"></script>
+</body>
+
+</html>

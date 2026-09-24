@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bills & Payments - SmartSpend</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <div class="dashboard-layout">
+
+       <!-- Sidebar -->
+<aside class="sidebar">
+
+    <div class="dashboard-logo">
+        Smart<span>Spend</span>
+    </div>
+
+    <nav class="sidebar-nav">
+
+        <a href="dashboard.html">
+            🏠 Dashboard
+        </a>
+
+        <a href="transactions.html">
+            💰 Transactions
+        </a>
+
+        <a href="budget.html">
+            📊 Budget & Savings
+        </a>
+
+        <a href="bills.html" class="active">
+            🔔 Bills & Payments
+        </a>
+
+        <a href="analytics.html">
+            📈 Analytics
+        </a>
+
+        <a href="reports.html">
+            📄 Reports
+        </a>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <a href="settings.html">
+            ⚙️ Settings
+        </a>
+
+        <a href="#" id="logoutBtn">
+            🚪 Logout
+        </a>
+
+    </div>
+
+</aside>
+
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+
+            <!-- Header -->
+            <header class="dashboard-header">
+
+                <div>
+                    <h1>Bills & Payments</h1>
+
+                    <p>
+                        Track your upcoming and overdue bills.
+                    </p>
+                </div>
+
+                <div class="user-profile">
+
+                    <div class="user-avatar" id="userAvatar">
+                        U
+                    </div>
+
+                    <div>
+                        <strong id="userName">Loading...</strong>
+                        <small id="userEmail">Loading...</small>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- Add Bill -->
+            <section class="dashboard-box">
+
+                <div class="box-header">
+
+                    <div>
+                        <h3>Add New Bill</h3>
+
+                        <p>
+                            Add a bill and keep track of its due date.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <form id="billForm">
+
+                    <!-- Bill Title -->
+                    <div class="form-group">
+
+                        <label for="billTitle">
+                            Bill Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="billTitle"
+                            placeholder="e.g. Internet Bill"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Amount -->
+                    <div class="form-group">
+
+                        <label for="billAmount">
+                            Amount (৳)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="billAmount"
+                            placeholder="e.g. 1000"
+                            min="1"
+                            step="0.01"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Category -->
+                    <div class="form-group">
+
+                        <label for="billCategory">
+                            Category
+                        </label>
+
+                        <select id="billCategory">
+
+                            <option value="">
+                                Select Category
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Due Date -->
+                    <div class="form-group">
+
+                        <label for="dueDate">
+                            Due Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dueDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Repeat -->
+                    <div class="form-group">
+
+                        <label for="repeatType">
+                            Repeat
+                        </label>
+
+                        <select id="repeatType">
+
+                            <option value="none">
+                                Does not repeat
+                            </option>
+
+                            <option value="weekly">
+                                Weekly
+                            </option>
+
+                            <option value="monthly">
+                                Monthly
+                            </option>
+
+                            <option value="yearly">
+                                Yearly
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Description -->
+                    <div class="form-group">
+
+                        <label for="billDescription">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="billDescription"
+                            placeholder="Optional description"
+                            rows="4"
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="auth-btn"
+                    >
+                        Add Bill
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- Bills List -->
+            <section class="dashboard-box">
+
+                <div class="box-header">
+
+                    <div>
+                        <h3>My Bills</h3>
+
+                        <p>
+                            Your upcoming and overdue payments.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div id="billsList">
+
+                    <p>
+                        Loading bills...
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="/js/app.js"></script>
+
+</body>
+
+</html>
