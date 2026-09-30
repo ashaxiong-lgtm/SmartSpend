@@ -1928,11 +1928,92 @@ const weeklyExpenseChart =
 const monthlyExpenseChart =
     document.getElementById("monthlyExpenseChart");
 
+const expensePaymentMethodChart =
+    document.getElementById("expensePaymentMethodChart");
+
+const incomePaymentMethodChart =
+    document.getElementById("incomePaymentMethodChart");
+
+// Same method keeps the same label and color in both charts
+const PAYMENT_METHODS = {
+    cash: { label: "Cash", color: "#22c55e" },
+    bkash: { label: "bKash", color: "#e2136e" },
+    nagad: { label: "Nagad", color: "#f97316" },
+    card: { label: "Card", color: "#3b82f6" },
+    bank: { label: "Bank", color: "#8b5cf6" },
+    other: { label: "Other", color: "#94a3b8" }
+};
+
+function renderPaymentMethodChart(canvas, emptyMessage, methodTotals) {
+
+    if (!canvas) {
+        return;
+    }
+
+    const rows = methodTotals.filter(item => Number(item.total) > 0);
+
+    if (rows.length === 0) {
+        canvas.hidden = true;
+
+        if (emptyMessage) {
+            emptyMessage.hidden = false;
+        }
+
+        return;
+    }
+
+    const methodInfo = method =>
+        PAYMENT_METHODS[method] || PAYMENT_METHODS.other;
+
+    const amounts = rows.map(item => Number(item.total));
+
+    const grandTotal = amounts.reduce((sum, value) => sum + value, 0);
+
+    new Chart(canvas, {
+        type: "pie",
+
+        data: {
+            labels: rows.map(item => methodInfo(item.method).label),
+
+            datasets: [{
+                label: "Amount (৳)",
+                data: amounts,
+                backgroundColor: rows.map(item => methodInfo(item.method).color),
+                borderColor: "#ffffff",
+                borderWidth: 2
+            }]
+        },
+
+        options: {
+            responsive: true,
+
+            plugins: {
+                legend: {
+                    position: "bottom"
+                },
+
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const value = Number(context.raw);
+                            const percent = Math.round((value / grandTotal) * 100);
+
+                            return `${context.label}: ৳ ${value.toLocaleString()} (${percent}%)`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
 if (
     incomeExpenseChart ||
     expenseCategoryChart ||
     weeklyExpenseChart ||
-    monthlyExpenseChart
+    monthlyExpenseChart ||
+    expensePaymentMethodChart ||
+    incomePaymentMethodChart
 ) {
 
     fetch("/api/analytics")
@@ -2392,6 +2473,22 @@ if (monthlyExpenseChart) {
     });
 
 }
+
+            // ===============================
+            // Payment Method Pie Charts
+            // ===============================
+
+            renderPaymentMethodChart(
+                expensePaymentMethodChart,
+                document.getElementById("expensePaymentMethodEmpty"),
+                data.expenseByPaymentMethod || []
+            );
+
+            renderPaymentMethodChart(
+                incomePaymentMethodChart,
+                document.getElementById("incomePaymentMethodEmpty"),
+                data.incomeByPaymentMethod || []
+            );
 
             // ===============================
             // Financial Insight

@@ -3960,3 +3960,19 @@ footer p {
     color: #16a34a;
 
 }
+/* Payment Method Charts */
+
+.chart-empty-message {
+    margin: 0;
+    padding: 45px 25px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+    background: #f8fafc;
+    color: #64748b;
+    font-size: 13px;
+    text-align: center;
+}
+
+.chart-empty-message[hidden] {
+    display: none;
+}

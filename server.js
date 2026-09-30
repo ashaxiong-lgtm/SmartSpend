@@ -2203,25 +2203,70 @@ db.query(weeklyQuery, [userId], (weeklyErr, weeklyResults) => {
             }
 
 
-            res.json({
-                status: "success",
+            // ===============================
+            // Totals by Payment Method
+            // ===============================
 
-                totalIncome,
-                totalExpense,
-                balance,
+            const paymentMethodQuery = `
+                SELECT
+                    type,
+                    LOWER(payment_method) AS method,
+                    SUM(amount) AS total
+                FROM transactions
+                WHERE user_id = ?
+                GROUP BY type, LOWER(payment_method)
+                ORDER BY total DESC
+            `;
 
-                categories: categoryResults,
+            db.query(
+                paymentMethodQuery,
+                [userId],
+                (paymentErr, paymentResults) => {
 
-                weeklyExpenses: weeklyResults,
+                    if (paymentErr) {
+                        console.error(paymentErr);
 
-                monthlyExpenses: monthlyResults,
+                        return res.status(500).json({
+                            status: "error",
+                            message: "Could not load payment method analytics."
+                        });
+                    }
 
-                spendingTrend: spendingTrend,
+                    const toMethodTotals = type =>
+                        paymentResults
+                            .filter(row => row.type === type)
+                            .map(row => ({
+                                method: row.method,
+                                total: Number(row.total)
+                            }));
 
-                currentMonthExpense: currentMonthExpense,
 
-                previousMonthExpense: previousMonthExpense
-            });
+                    res.json({
+                        status: "success",
+
+                        totalIncome,
+                        totalExpense,
+                        balance,
+
+                        categories: categoryResults,
+
+                        weeklyExpenses: weeklyResults,
+
+                        monthlyExpenses: monthlyResults,
+
+                        spendingTrend: spendingTrend,
+
+                        currentMonthExpense: currentMonthExpense,
+
+                        previousMonthExpense: previousMonthExpense,
+
+                        expenseByPaymentMethod: toMethodTotals("expense"),
+
+                        incomeByPaymentMethod: toMethodTotals("income")
+                    });
+
+                }
+            );
 
         }
 
