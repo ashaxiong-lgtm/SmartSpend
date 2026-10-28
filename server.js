@@ -8,7 +8,10 @@ const db = require("./server/db");
 
 const app = express();
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
+// Needed when running behind a hosting proxy (Render, Railway, Heroku...)
+app.set("trust proxy", 1);
 
 
 // =========================
@@ -29,7 +32,10 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            maxAge: 1000 * 60 * 60 * 24
+            maxAge: 1000 * 60 * 60 * 24,
+            httpOnly: true,
+            sameSite: "lax",
+            secure: process.env.NODE_ENV === "production"
         }
     })
 );
