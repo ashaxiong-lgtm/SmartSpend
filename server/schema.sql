@@ -93,3 +93,4 @@ INSERT IGNORE INTO categories (name, type) VALUES
     ('Entertainment', 'expense'),
     ('Groceries', 'expense'),
     ('Other Expense', 'expense');
+
